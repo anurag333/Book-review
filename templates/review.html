@@ -1,0 +1,81 @@
+{% extends "layout.html" %} {% block title %} review {% endblock %} {% block
+body %}
+
+<div class="container">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">BOOKABOOK</a>
+      </div>
+      <div>
+        <ul class="navbar na navbar-nav">
+          <li><a href="/">HOME</a></li>
+
+          <li><a href="/logout">LOGOUT</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="row">
+  <div class="form-control col-md-6">
+    <img src="{{image_url}}" alt="book-cover" /> <br />
+    Book isbn : {{book_details.isbn}} <br />
+    Book name : {{book_details.title}} <br />
+    Book author : {{book_details.author}} <br />
+    Book year : {{book_details.year}} <br />
+    Average ratings : {{average_rating}} <br />
+    no. of ratings : {{no_of_ratings}} <br />
+    <a href=" https://www.goodreads.com/book/isbn/{{book_details.isbn}}"
+      >link to goodReads</a
+    >
+  </div>
+
+  <div class="form-control col-md-6">
+    <form action="/sendreview" method="POST" class="container form-control">
+      <div class="form-control">
+        <h3>rating out of 5</h3>
+        <select class="form-control" name="rating">
+          <option value="1">One Star</option>
+          <option value="2">Two Star</option>
+          <option value="3">Three Star</option>
+          <option value="4">Four Star</option>
+          <option value="5">Five Star</option>
+        </select>
+      </div>
+      <div class="form-control">
+        <label for="review"> REVIEW</label>
+        <input type="text" name="review" class="form-control" />
+      </div>
+      <div class="form-control">
+        <label for="isbn">isbn:</label>
+        <input
+          type="text"
+          name="isbn"
+          value="{{book_details.isbn}}"
+          readonly
+        /><br />
+      </div>
+      <input type="submit" value="submit" />
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-control">
+    {% for review in reviews %}
+    <a href="/user/{{review.username}}">
+      <div class="form-control">
+        <h3>{{review.username}}</h3>
+        <br />
+        bukabook rating: {{review.rating}} <br />
+        bukabook review: {{review.review}}
+      </div>
+    </a>
+    {% else%}
+    <h1>NO REVIEWS</h1>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

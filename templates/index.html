@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    home
+{% endblock %}
+
+{% block body %}
+    
+
+    <div class = "container">
+        <nav class = "navbar navbar-default">
+            <div class = container>
+                <div class = "navbar-header">
+                    <a href="/" class ="navbar-brand">BOOKABOOK</a>
+                </div>
+                <div >
+                    <ul class ="navbar na navbar-nav">
+                        <li><a href="/">HOME</a></li>
+                        
+                        <li><a href="/logout">LOGOUT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="form-control ">
+        
+        <br>
+        <h3>Welcome {{userdata.fname}} {{userdata.lname}}</h1><br><br><br>
+    </div> 
+   
+    <div  class = "row">
+        
+        <div class ="col-md-7 form-control">
+            <h1>recommended books :</h1><br>
+            {% for reco in recommendations %}
+            <div class = "form-control">
+                <div class = "row">         
+                    <div class ="col-md-7">
+                        <h3>Book: {{ reco.title }}</h3><br>
+                        <h5>Author: {{ reco.author }}</h5> <br>
+                        <h5>Year: {{ reco.year }} </h5><br>
+                        <h5>Average Rating : {{reco.average_rating}}</h5><br>
+                        <h5>No. of ratings : {{reco.no_of_ratings}}</h5><br>
+                        <a href="/book/{{reco.isbn}}">view</a>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{reco.image_url}}" alt="image" height="180" width="140">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class = " col-md-5 form-control">
+            <h1>Search</h1><br>
+            <form action="/search" method="GET" class = "form-control">
+                
+                <label for="search_type">Select by: </label>
+                <select class = "form-control" name="search_type">
+                    <option value="isbn">Isbn</option>
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="year">Year</option>
+                </select>
+                <label for="search_string">Keyword :</label>
+                <input type="text" name="search_string"  class = "form-control"><br>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+    

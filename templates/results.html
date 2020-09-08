@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    results
+{% endblock %}
+
+{% block body %}
+    
+<div class = "container">
+    <nav class = "navbar navbar-default">
+        <div class = container>
+            <div class = "navbar-header">
+                <a href="/" class ="navbar-brand">BOOKABOOK</a>
+            </div>
+            <div >
+                <ul class ="navbar na navbar-nav">
+                    <li><a href="/">HOME</a></li>
+                    
+                    <li><a href="/logout">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+    <div class = "container">
+        <h1>{{no_of_results}}  matching books</h1><br>
+       {% for i in range(no_of_results) %}
+            <div class = "form-control">
+                <div class = "row ">  
+                    <div class = "col-md-6">  
+                        {{results[i].isbn}} <br>
+                        {{results[i].title}} <br>
+                        {{results[i].author}} <br>
+                        {{results[i].year}} <br>
+                        <a href="/book/{{results[i].isbn}}">view more</a>
+                    </div>
+                    <div class= "col-md-6">
+                        {% if no_of_results<20 %}
+                            <img src="{{images[i]}}" alt="image" height="130" width="100">
+                        {% endif %}
+                    </div>
+                </div> 
+            </div> 
+           {% else %}
+                <h1>NO SEARCH RESULT</h1>
+             
+        {% endfor %}
+    </div> 
+    <div class = "container">
+        
+    </div>
+{% endblock %}
+    

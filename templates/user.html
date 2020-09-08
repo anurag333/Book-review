@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    home
+{% endblock %}
+
+{% block body %}
+    
+
+    <div class = "container">
+        <nav class = "navbar navbar-default">
+            <div class = container>
+                <div class = "navbar-header">
+                    <a href="/" class ="navbar-brand">BOOKABOOK</a>
+                </div>
+                <div >
+                    <ul class ="navbar na navbar-nav">
+                        <li><a href="/">HOME</a></li>
+                        
+                        <li><a href="/logout">LOGOUT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class = "form-control">
+        Name : {{userdata.fname}} {{userdata.lname}} <br>
+        userid : {{ userdata.username }}
+    </div>
+{% endblock %}
+    
